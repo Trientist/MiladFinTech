@@ -1,5 +1,5 @@
 // Replace these with your deployed contract addresses
-const TOKEN_ADDRESS = "0xYourTokenAddressHere";
+const TOKEN_ADDRESS = "0x511442E74A1B6AB59f10866F8A3fDb84283D16b7";
 const SWAP_ADDRESS = "0xYourSwapContractAddressHere";
 
 // 0.001 SepETH per token
