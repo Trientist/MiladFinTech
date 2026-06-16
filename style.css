@@ -1,44 +1,37 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2870
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #111;
+}
 
-\f0\fs24 \cf0 body \{\
-  font-family: Arial, sans-serif;\
-  background: #f5f5f5;\
-  color: #111;\
-\}\
-\
-main \{\
-  max-width: 600px;\
-  margin: 60px auto;\
-  padding: 30px;\
-  background: white;\
-  border-radius: 12px;\
-\}\
-\
-button \{\
-  padding: 10px 16px;\
-  margin-top: 8px;\
-  cursor: pointer;\
-\}\
-\
-input \{\
-  padding: 10px;\
-  width: 200px;\
-\}\
-\
-section \{\
-  margin-top: 30px;\
-\}\
-\
-.hidden \{\
-  display: none;\
-\}\
-\
-#status \{\
-  margin-top: 25px;\
-  font-weight: bold;\
-\}}
+main {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+}
+
+button {
+  padding: 10px 16px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+}
+
+section {
+  margin-top: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+#status {
+  margin-top: 25px;
+  font-weight: bold;
+}
