@@ -1,5 +1,5 @@
-const TOKEN_ADDRESS = "0xYourTokenAddressHere";
-const SWAP_ADDRESS = "0xYourSwapContractAddressHere";
+const TOKEN_ADDRESS = "0xf7F9DB19998bEA87672B88F441c6D24A9C0f92cA";
+const SWAP_ADDRESS = "0xCA33b33871D37518c5e788CC7a0B2116b0665062";
 const NFT_ADDRESS = "0xYourNFTContractAddressHere";
 
 const PRICE_PER_TOKEN_ETH = 0.001;
