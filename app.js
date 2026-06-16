@@ -1,9 +1,9 @@
-// Replace these with your deployed contract addresses
-const TOKEN_ADDRESS = "0x511442E74A1B6AB59f10866F8A3fDb84283D16b7";
+const TOKEN_ADDRESS = "0xYourTokenAddressHere";
 const SWAP_ADDRESS = "0xYourSwapContractAddressHere";
+const NFT_ADDRESS = "0xYourNFTContractAddressHere";
 
-// 0.001 SepETH per token
-const PRICE_PER_TOKEN_ETH = "0.001";
+const PRICE_PER_TOKEN_ETH = 0.001;
+const NFT_PRICE_TOKENS = 50;
 
 const tokenAbi = [
   "function balanceOf(address owner) view returns (uint256)",
@@ -15,19 +15,38 @@ const swapAbi = [
   "function redeem(uint256 tokenAmount)"
 ];
 
+const nftAbi = [
+  "function mint()"
+];
+
 let provider;
 let signer;
 let userAddress;
 let tokenContract;
 let swapContract;
+let nftContract;
 
-const connectBtn = document.getElementById("connectBtn");
-const buyBtn = document.getElementById("buyBtn");
-const redeemBtn = document.getElementById("redeemBtn");
+document.getElementById("connectBtn").onclick = connectWallet;
+document.getElementById("buyBtn").onclick = buyTokens;
+document.getElementById("redeemBtn").onclick = redeemTokens;
+document.getElementById("mintBtn").onclick = mintNFT;
 
-connectBtn.onclick = connectWallet;
-buyBtn.onclick = buyTokens;
-redeemBtn.onclick = redeemTokens;
+document.getElementById("buyAmount").oninput = updateBuyCost;
+document.getElementById("redeemAmount").oninput = updateRedeemValue;
+
+function updateBuyCost() {
+  const amount = Number(document.getElementById("buyAmount").value);
+  const cost = amount > 0 ? amount * PRICE_PER_TOKEN_ETH : 0;
+  document.getElementById("buyCost").innerText =
+    amount > 0 ? `Cost: ${cost} SepETH` : "Cost: - SepETH";
+}
+
+function updateRedeemValue() {
+  const amount = Number(document.getElementById("redeemAmount").value);
+  const value = amount > 0 ? amount * PRICE_PER_TOKEN_ETH : 0;
+  document.getElementById("redeemValue").innerText =
+    amount > 0 ? `You receive: ${value} SepETH` : "You receive: - SepETH";
+}
 
 async function connectWallet() {
   if (!window.ethereum) {
@@ -41,6 +60,7 @@ async function connectWallet() {
 
   tokenContract = new ethers.Contract(TOKEN_ADDRESS, tokenAbi, signer);
   swapContract = new ethers.Contract(SWAP_ADDRESS, swapAbi, signer);
+  nftContract = new ethers.Contract(NFT_ADDRESS, nftAbi, signer);
 
   document.getElementById("wallet").innerText = "Connected: " + userAddress;
 
@@ -63,17 +83,17 @@ async function updateBalance() {
 
 async function buyTokens() {
   try {
-    const amount = document.getElementById("buyAmount").value;
+    const amount = Number(document.getElementById("buyAmount").value);
 
     if (!amount || amount <= 0) {
       setStatus("Enter a token amount.");
       return;
     }
 
-    const ethCost = Number(amount) * Number(PRICE_PER_TOKEN_ETH);
+    const ethCost = amount * PRICE_PER_TOKEN_ETH;
     const value = ethers.parseEther(ethCost.toString());
 
-    setStatus("Transaction pending...");
+    setStatus("Buying tokens...");
     const tx = await swapContract.buyTokens({ value });
     await tx.wait();
 
@@ -87,7 +107,7 @@ async function buyTokens() {
 
 async function redeemTokens() {
   try {
-    const amount = document.getElementById("redeemAmount").value;
+    const amount = Number(document.getElementById("redeemAmount").value);
 
     if (!amount || amount <= 0) {
       setStatus("Enter a token amount.");
@@ -109,6 +129,24 @@ async function redeemTokens() {
   } catch (err) {
     console.error(err);
     setStatus("Transaction failed.");
+  }
+}
+
+async function mintNFT() {
+  try {
+    setStatus("Approving 50 tokens for NFT mint...");
+    const approveTx = await tokenContract.approve(NFT_ADDRESS, NFT_PRICE_TOKENS);
+    await approveTx.wait();
+
+    setStatus("Minting NFT...");
+    const mintTx = await nftContract.mint();
+    await mintTx.wait();
+
+    await updateBalance();
+    setStatus("NFT minted.");
+  } catch (err) {
+    console.error(err);
+    setStatus("NFT mint failed.");
   }
 }
 
