@@ -2,12 +2,12 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>SepETH Token Swap</title>
+  <title>Course Token App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main>
-    <h1>SepETH Token Swap</h1>
+    <h1>Course Token App</h1>
 
     <button id="connectBtn">Connect MetaMask</button>
     <p id="wallet">Not connected</p>
@@ -16,13 +16,21 @@
     <section>
       <h2>Buy Tokens</h2>
       <input id="buyAmount" type="number" placeholder="Number of tokens" />
+      <p id="buyCost">Cost: - SepETH</p>
       <button id="buyBtn">Swap SepETH for Tokens</button>
     </section>
 
     <section>
       <h2>Redeem Tokens</h2>
       <input id="redeemAmount" type="number" placeholder="Number of tokens" />
+      <p id="redeemValue">You receive: - SepETH</p>
       <button id="redeemBtn">Swap Tokens for SepETH</button>
+    </section>
+
+    <section>
+      <h2>Mint NFT</h2>
+      <p>Cost: 50 Course Tokens</p>
+      <button id="mintBtn">Mint NFT</button>
     </section>
 
     <section id="holderContent" class="hidden">
