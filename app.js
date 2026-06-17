@@ -13,10 +13,10 @@ const TOKEN_ABI = [
 ];
 
 const SWAP_ABI = [
-  "function buyTokens() public payable",
-  "function redeemTokens(uint256 tokenAmount) external",
-  "function tokenBalance() external view returns (uint256)",
-  "function sepEthBalance() external view returns (uint256)"
+  "function buyTokens() payable",
+  "function redeemTokens(uint256 tokenAmount)",
+  "function tokenBalance() view returns (uint256)",
+  "function sepEthBalance() view returns (uint256)"
 ];
 
 const NFT_ABI = [
