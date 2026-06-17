@@ -13,7 +13,7 @@ const TOKEN_ABI = [
 ];
 
 const SWAP_ABI = [
-  "function buyTokens() external payable",
+  "function buyTokens() public payable",
   "function redeemTokens(uint256 tokenAmount) external",
   "function tokenBalance() external view returns (uint256)",
   "function sepEthBalance() external view returns (uint256)"
