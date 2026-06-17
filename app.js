@@ -20,7 +20,7 @@ const SWAP_ABI = [
 ];
 
 const NFT_ABI = [
-  "function mintNFT() external"
+  "function mintNFT()"
 ];
 
 let userAddress = null;
