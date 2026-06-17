@@ -1,41 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Course Token App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Token dApp</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>Course Token App</h1>
+  <main class="container">
+    <h1>Course Token dApp</h1>
 
-    <button id="connectBtn">Connect MetaMask</button>
-    <p id="wallet">Not connected</p>
-    <p id="tokenBalance">Token balance: -</p>
+    <button id="connectButton">Connect MetaMask</button>
+    <p id="wallet">Wallet not connected</p>
 
     <section>
-      <h2>Buy Tokens</h2>
-      <input id="buyAmount" type="number" placeholder="Number of tokens" />
-      <p id="buyCost">Cost: - SepETH</p>
-      <button id="buyBtn">Swap SepETH for Tokens</button>
+      <h2>Buy Course Tokens</h2>
+      <input id="ethAmount" type="number" min="0.001" step="0.001" placeholder="SepETH amount" />
+      <p id="buyPreview">You will receive: 0 tokens</p>
+      <button id="buyButton">Buy Tokens</button>
     </section>
 
     <section>
-      <h2>Redeem Tokens</h2>
-      <input id="redeemAmount" type="number" placeholder="Number of tokens" />
-      <p id="redeemValue">You receive: - SepETH</p>
-      <button id="redeemBtn">Swap Tokens for SepETH</button>
+      <h2>Redeem Course Tokens</h2>
+      <input id="redeemAmount" type="number" min="1" step="1" placeholder="Token amount" />
+      <p id="redeemPreview">You will receive: 0 SepETH</p>
+      <button id="redeemButton">Redeem Tokens</button>
     </section>
 
     <section>
       <h2>Mint NFT</h2>
       <p>Cost: 50 Course Tokens</p>
-      <button id="mintBtn">Mint NFT</button>
+      <button id="mintButton">Mint NFT</button>
     </section>
 
-    <section id="holderContent" class="hidden">
-      <h2>Congrats, you have 50 Tokens</h2>
-      <a href="your-file.pdf" download>Download reward PDF</a>
+    <section>
+      <h2>Your Balance</h2>
+      <button id="balanceButton">Check Balance</button>
+      <p id="balance">-</p>
+    </section>
+
+    <section id="pdfSection" class="hidden">
+      <h2>PDF Reward</h2>
+      <p>Congrats, you have at least 50 Course Tokens.</p>
+      <a href="reward.pdf" download>Download PDF</a>
     </section>
 
     <p id="status"></p>
